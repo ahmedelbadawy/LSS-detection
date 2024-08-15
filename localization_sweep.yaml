@@ -1,0 +1,101 @@
+# The program to run
+program: train.py
+
+# Method can be grid, random or bayes
+method: random
+
+# Project this sweep is part of
+project: conference_ROI
+entity: elbadawy990-sejong-university
+
+# Metric to optimize
+metric:
+  name: metrics/mAP50(B)
+  goal: maximize
+
+
+# Parameters space to search
+parameters:
+  dropout:
+    distribution: categorical
+    values:
+      - 0
+      - 0.1
+      - 0.2
+      - 0.3
+      - 0.4
+      - 0.5
+
+  lr:
+    distribution: categorical
+    values:
+      - 9e-2
+      - 6e-2
+      - 3e-2
+      - 1e-2
+      - 9e-3
+      - 6e-3
+      - 3e-3
+      - 1e-3
+      - 9e-4
+      - 6e-4
+      - 3e-4
+      - 1e-4
+  
+  optimizer:
+    distribution: categorical
+    values:
+      - 'AdamW'
+      - 'Adam'
+      - 'SGD'
+      - 'RMSProp'
+      - 'NAdam'
+      - 'RAdam'
+  
+  batch_size:
+    distribution: categorical
+    values:
+    - 8
+    - 16
+    - 32
+    - 64
+
+  pretrained:
+    distribution: categorical
+    values:
+    - True
+    - False
+
+  cos_lr:
+    distribution: categorical
+    values:
+    - True
+    - False
+  
+  imgsz:
+    distribution: categorical
+    values:
+    - 320
+    - 416
+    - 512
+    - 608
+    - 640
+
+
+  lrf:
+    distribution: categorical
+    values: [0.001, 0.003, 0.006, 0.01, 0.03, 0.06, 0.1, 0.3, 0.6]
+
+  mosaic:
+    distribution: categorical
+    values: [0, 1]
+
+  model:
+    distribution: categorical
+    values:
+
+    - 'yolov8m'
+    - 'yolov9m'
+    - 'yolov10m'
+
+
